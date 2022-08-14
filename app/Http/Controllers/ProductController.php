@@ -43,4 +43,26 @@ class ProductController extends Controller
         }
 
     }
+    public function update(Request $request){
+        
+        $product=Product::where('id',$request->id)->update([
+            'name' => $request->name,
+            'description'=>$request->description,
+            'category_id'=>$request->category_id,
+            'slug'=>$request->slug,
+            'price'=> $request->price,
+        
+            
+        ]);
+        if($product->update()){
+            return response()->json([
+                'message' => 'Product updated successfully'
+            ],201);
+        }
+        else{
+            return response()->json([
+                'message' => 'Error occured!!!'
+            ]);
+        }
+    }
 }
