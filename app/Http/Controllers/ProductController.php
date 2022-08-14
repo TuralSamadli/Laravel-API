@@ -65,4 +65,13 @@ class ProductController extends Controller
             ]);
         }
     }
+    
+    public function delete(Request $request){
+        if(Product::destroy($request->id)){
+            
+            return response()->json([
+                'message'=> 'Product was deleted successfully'
+            ]);
+        }
+    }
 }
